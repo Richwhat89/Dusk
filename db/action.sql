@@ -1,0 +1,3 @@
+SELECT action FROM result
+ORDER BY RANDOM()
+LIMIT 1

@@ -1,4 +1,4 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 module.exports={
     login: (req, res)=>{
@@ -8,8 +8,8 @@ module.exports={
             if(!users.length){
                 res.status(401).json({error: 'Please register to play.'})
             }else{
-                if(await bcrypt.compare(req.body.password, user[0].password)){
-                    res.json({username: user[0].username});
+                if(await bcrypt.compare(req.body.password, users[0].password)){
+                    res.json({username: users[0].username});
                 }else{
                     res.status(401).json({error: 'Incorrect password. Please try again or register to play.'});
                 }
@@ -18,10 +18,11 @@ module.exports={
     },
 
     register: async (req, res)=>{
+        console.log(req.body)
         const db = req.app.get('db');
-        const has = await bcrypt.hash(req.body.password, 10)
+        const hash = await bcrypt.hash(req.body.password, 10)
         try{
-            const respopse = await db.addUser({username: req.body.username, password: hash});
+            const response = await db.addUser([req.body.username, hash, req.body.display_name, req.body.email]);
             res.json({username: response[0].username})
         }catch(e){
             console.log(e);

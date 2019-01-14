@@ -8,6 +8,7 @@ const initialState = {
 const LOGIN = 'LOGIN';
 const REGISTER = 'REGISTER';
 const GET_HERO = 'GET_USER';
+const EDIT = 'EDIT';
 
 export function login(username, password){
     return{
@@ -23,12 +24,20 @@ export function register(username, password, display_name, email){
     }
 }
 
+export function edit(username, password, display_name, email){
+    return{
+        type: EDIT,
+        payload: axios.post('/auth/edit', {username, password, display_name, email})
+    }
+}
+
 export function getHero(){
     return{
         type: GET_HERO,
         payload: axios.get('/auth/hero')
     }
 }
+
 
 export default function reducer(state=initialState, action){
     switch(action.type){
@@ -40,6 +49,11 @@ export default function reducer(state=initialState, action){
         case REGISTER + '_FULFILLED':
         return{...state, user: action.payload.data};
         case REGISTER + '_REJECTED':
+        return{...state, error: 'invalid'}
+
+        case EDIT + '_FULFILLED':
+        return{...state, user: action.payload.data};
+        case EDIT + '_REJECTED':
         return{...state, error: 'invalid'}
 
         case GET_HERO + '_FULFILLED':

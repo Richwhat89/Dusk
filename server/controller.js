@@ -36,5 +36,10 @@ module.exports={
         }else{
             res.status(401).json({error: 'Please log in to play.'})
         }
+    },
+
+    event: (req, res)=>{
+        const db = req.app.get('db');
+        db.event({action: req.body.action})
     }
 }

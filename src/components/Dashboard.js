@@ -8,8 +8,15 @@ class Dashboard extends Component{
             <div>
                 <header>WELCOME!</header>
                     <h1>{this.props.user.username}</h1>
-                    <Link to='/edit'>Edit</Link><br></br>
-                    <Link to='/'>Exit</Link>
+                    <Link to='/rOne'>
+                        <button>Enter</button>
+                    </Link><br></br>
+                    <Link to='/edit'>
+                        <button>Edit</button>
+                    </Link><br></br>
+                    <Link to='/'>
+                        <button>Exit</button>
+                    </Link>
             </div>
         )
     }

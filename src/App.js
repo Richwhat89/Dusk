@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+
 import {Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
+import {HashRouter} from 'react-router-dom';
+
+import router from './router';
 import Dashboard from './components/Dashboard';
 import Edit from './components/Edit';
 import Home from './components/Home';
@@ -14,19 +16,16 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-        <Router>
-          <div>
-          <Route path='/edit' exact component={Edit}/>
-          <Route path='/dashboard' exact render={()=>this.props.user.username ? <Dashboard/>: <Redirect to='/'/>}/>
-          <Route path='/register' component={Register}/>
-          <Route path='/' exact component={Home}/>
-          </div>
-        </Router>
+        <HashRouter>
+          {router}
+        </HashRouter>
 
     );
   }
 }
 
-export default connect(state=>state, {getHero}) (App);
+// render={()=>this.props.user.username ? <Dashboard/>: <Redirect to='/'/>}
 
- 
+// export default connect(state=>state, {getHero}) (App);
+
+export default App; 

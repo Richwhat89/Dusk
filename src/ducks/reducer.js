@@ -27,7 +27,7 @@ export function register(username, password, display_name, email){
 export function edit(username, password, display_name, email){
     return{
         type: EDIT,
-        payload: axios.post('/auth/edit', {username, password, display_name, email})
+        payload: axios.put('/auth/edit', {username, password, display_name, email})
     }
 }
 

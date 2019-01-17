@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
 
-class RoomSeven extends Component{
+class RoomEighteen extends Component{
 
     componentDidMount=(question, answer)=>
     axios
@@ -16,17 +16,17 @@ class RoomSeven extends Component{
         return(
             <div>
                 <p><br></br>
-                    Room 7
+                    Room 18
                 </p><br></br><br></br>
 
                 <div className='directions'>
-                    <Link to='rEight'>
+                    <Link to='rTwenty'>
                         <button>Left</button>
                     </Link>
-                    <Link to='rNine'>
+                    <Link to='rTwentyOne'>
                         <button>Forward</button>
                     </Link>
-                    <Link to='rTen'>
+                    <Link to='rNineteen'>
                         <button>Right</button>
                     </Link>
                 </div>
@@ -36,4 +36,4 @@ class RoomSeven extends Component{
     }
 }
 
-export default RoomSeven;
+export default RoomEighteen;

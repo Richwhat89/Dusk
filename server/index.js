@@ -24,6 +24,8 @@ massive(process.env.CONNECTION_STRING)
 app.post('/auth/login', controller.login);
 app.post('/auth/register', controller.register);
 app.get('/auth/hero', controller.hero);
+app.put('/auth/edit', controller.edit);
+app.get('/api/events', controller.event);
 
 
 app.listen(process.env.EXPRESS_PORT, ()=>{

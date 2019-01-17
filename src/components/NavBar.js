@@ -15,13 +15,13 @@ class NavBar extends Component{
                 <div classname='title'>
                     <Link to='/'>DUSK</Link>
                 </div>
-                <div classname='navbar-links'>
+                <nav classname='navbar-links'>
                     <ul classname='links'>
                         <li><Link to='/dashboard'>Journal</Link></li>
                         <li></li>
                         <li></li>
                     </ul>
-                </div>
+                </nav>
             </div>
         )
     }

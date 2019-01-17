@@ -20,6 +20,21 @@ import RoomTwelve from './rooms/RoomTwelve';
 import RoomThirteen from './rooms/RoomThirteen';
 import RoomFourteen from './rooms/RoomFourteen';
 import RoomFifteen from './rooms/RoomFifteen';
+import RoomSixteen from './rooms/RoomSixteen';
+import RoomSeventeen from './rooms/RoomSeventeen';
+import RoomEighteen from './rooms/RoomEighteen';
+import RoomNineteen from './rooms/RoomNineteen';
+import RoomTwenty from './rooms/RoomTwenty';
+import RoomTwentyOne from './rooms/RoomTwentyOne';
+import RoomTwentyTwo from './rooms/RoomTwentyTwo';
+import RoomTwentyThree from './rooms/RoomTwentyThree';
+import RoomTwentyFour from './rooms/RoomTwentyFour';
+import RoomTwentyFive from './rooms/RoomTwentyFive';
+import RoomTwentySix from './rooms/RoomTwentySix';
+import RoomTwentySeven from './rooms/RoomTwentySeven';
+import RoomTwentyEight from './rooms/RoomTwentyEight';
+import RoomTwentyNine from './rooms/RoomTwentyNine';
+import RoomThirty from './rooms/RoomThirty';
 import End from './rooms/End';
 
 export default(
@@ -44,6 +59,21 @@ export default(
         <Route path='/rThirteen' exact component={RoomThirteen}/>
         <Route path='/rFourteen' exact component={RoomFourteen}/>
         <Route path='/rFifteen' exact component={RoomFifteen}/>
+        <Route path='/rSixteen' exact component={RoomSixteen}/>
+        <Route path='/rSeventeen' exact component={RoomSeventeen}/>
+        <Route path='/rEighteen' exact component={RoomEighteen}/>
+        <Route path='/rNineteen' exact component={RoomNineteen}/>
+        <Route path='/rTwenty' exact component={RoomTwenty}/>
+        <Route path='/rTwentyOne' exact component={RoomTwentyOne}/>
+        <Route path='/rTwentyTwo' exact component={RoomTwentyTwo}/>
+        <Route path='/rTwentyThree' exact component={RoomTwentyThree}/>
+        <Route path='/rTwentyFour' exact component={RoomTwentyFour}/>
+        <Route path='/rTwentyFive' exact component={RoomTwentyFive}/>
+        <Route path='/rTwentySix' exact component={RoomTwentySix}/>
+        <Route path='/rTwentySeven' exact component={RoomTwentySeven}/>
+        <Route path='/rTwentyEight' exact component={RoomTwentyEight}/>
+        <Route path='/rTwentyNine' exact component={RoomTwentyNine}/>
+        <Route path='/rThirty' exact component={RoomThirty}/>
 
         <Route path='/end' exact component={End}/>
     </Switch>

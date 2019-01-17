@@ -6,7 +6,7 @@ import edit from '../ducks/reducer';
 class Edit extends Component{
     constructor(props){
         super(props);
-        this.props = {
+        this.state = {
             username: '',
             password: '',
             display_name: '',
@@ -22,10 +22,11 @@ class Edit extends Component{
 
     handleSubmit(e){
         e.preventDefault();
-        this.props.edit(this.props.username, this.props.password, this.props.display_name, this.props.email)
+        this.props.edit(this.state.username, this.state.password, this.state.display_name, this.state.email)
     }
 
     render(){
+        console.log(this.state)
         return(
             <div>
             <form onSubmit={this.handleSubmit}>
@@ -47,7 +48,10 @@ class Edit extends Component{
 
 const mapStateToProps = (state) => {
     return {
-        user: state.user
+        username: state.username,
+        password: state.password,
+        display_name: state.display_name,
+        email: state.email
     }
 }
 

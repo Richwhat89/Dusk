@@ -1,0 +1,3 @@
+SELECT praise, points FROM good
+ORDER BY RANDOM()
+LIMIT 1

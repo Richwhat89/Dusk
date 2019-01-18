@@ -1,0 +1,3 @@
+SELECT mean, points FROM bad
+ORDER BY RANDOM()
+LIMIT 1

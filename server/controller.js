@@ -51,11 +51,43 @@ module.exports={
         }
     },
 
+    room: (req, res)=>{
+        const db = req.app.get('db')
+        db.room({room_id: req.body.room_id, setting: req.body.setting})
+        .then(room=>{
+            res.status(200).json({room_id: room[0].room_id, setting: room[0].setting})
+        })
+    },
+
+    rndRoom: (req, res)=>{
+        const db = req.app.get('db')
+        db.rndRoom({room_id: req.body.room_id, setting: req.body.setting})
+        .then(room=>{
+            res.status(200).json({room_id: room[0].room_id, setting: room[0].setting})
+        })
+    },
+
     event: (req, res)=>{
         const db = req.app.get('db');
         db.event({question: req.body.question, answer: req.body.answer})
         .then(events=>{
             res.status(200).json({question: events[0].question, answer: events[0].answer})
+        })
+    },
+
+    good: (req, res)=>{
+        const db = req.app.get('db');
+        db.good({praise: req.body.praise, points: req.body.points})
+        .then(good=>{
+            res.status(200).json({praise: good[0].praise, points: good[0].points})
+        })
+    },
+
+    bad: (req, res)=>{
+        const db = req.app.get('db');
+        db.bad({praise: req.body.praise, points: req.body.points})
+        .then(bad=>{
+            res.status(200).json({praise: bad[0].praise, points: bad[0].points})
         })
     }
 }

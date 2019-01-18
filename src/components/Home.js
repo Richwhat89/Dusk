@@ -30,13 +30,13 @@ class Login extends Component{
             return <Redirect push to='/dashboard'/>;
         }
         return(
-            <div>
+            <div><br></br>
                 <form onSubmit={this.handleSubmit}>
-                    <input onChange={this.handleChange} value={this.state.username} name='username'/>
-                    <input onChange={this.handleChange} value={this.state.password} name='password' type='password'/>
-                    <button>Play</button>
+                    <input onChange={this.handleChange} value={this.state.username} name='username'/><br></br>
+                    <input onChange={this.handleChange} value={this.state.password} name='password' type='password'/><br></br>
+                    <button>Play</button><br></br>
                 </form>
-                <Link to='/register'>Register</Link>
+                <br></br><Link to='/register'>Register</Link>
             </div>
         )
     }

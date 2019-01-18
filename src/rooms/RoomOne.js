@@ -11,11 +11,16 @@ class RoomOne extends Component{
             question: '',
             answer: '',
             isHidden: true,
-            directionsHidden: true,
+            hideDirections: true,
             points: 0,
             result: '',
             setting: '',
-            loading: true
+            loading: true,
+            praiseToggle: false,
+            meanToggle: false,
+            hideTrueFalse: false,
+            hideText: false,
+            display_name: ''
         };
     }
 
@@ -30,7 +35,7 @@ class RoomOne extends Component{
     axios
         .get('/api/rndRoom')
         .then(response=>{console.log(response)
-        this.setState({room_id: response.data.room_id, setting: response.data.setting})
+        this.setState({room_id: response.data.room_id, setting: response.data.setting, praiseToggle: false, meanToggle: false, hideTrueFalse: false, hideText: true, isHidden: true, question: '', hideDirections: true})
     })
 
     event=()=>
@@ -44,25 +49,32 @@ class RoomOne extends Component{
     axios
         .get('/api/good')
         .then(response=>{console.log(response.data)
-        this.setState({praise: response.data.praise, points: this.state.points + response.data.points})
+        this.setState({praise: response.data.praise, points: this.state.points + response.data.points, praiseToggle: true, hideTrueFalse: true, hideDirections: false}, ()=>{
+            if(this.state.points == -5)
+            return('Game Over')
+        })
     })
 
     wrong=()=>
     axios
         .get('/api/bad')
         .then(response=>{console.log(response.data)
-        this.setState({mean: response.data.mean, points: this.state.points + response.data.points})
+        this.setState({mean: response.data.mean, points: this.state.points + response.data.points, meanToggle: true, hideTrueFalse: true, hideDirections: false}, ()=>{
+            if(this.state.points == -5)
+            return('Game Over')
+        })
     })
 
     render(){
         
         return(
             <div>
+                <p>{this.state.points}</p>
                 <p><br></br>
                     {this.state.setting}
                 </p>
                 <div>
-                    {this.state.loading && 
+                    {!this.state.hideText && this.state.loading && 
                     <p>An ominous voice enters your mind, "You must face a challenge before the doors in each room will unlock. 
                     Answer my questions to proceed, if freedom is what you seek."</p>}
                     <br></br>
@@ -72,17 +84,18 @@ class RoomOne extends Component{
                 </div>
                     {!this.state.isHidden && 
                 <div>
-                    {this.state.directionsHidden &&<button onClick={this.right}>True</button>}
-                    {this.state.directionsHidden &&<button onClick={this.wrong}>False</button>}
+                    {!this.state.hideTrueFalse && <button onClick={this.state.answer == 'True' ? this.right : this.wrong }>True</button>}
+                    {!this.state.hideTrueFalse && <button onClick={this.state.answer == 'False' ? this.right : this.wrong }>False</button>}
                 </div>}
                 <br></br>
+                {this.state.praiseToggle ? <p>{this.state.praise}</p> : null}
+                {this.state.meanToggle ? <p>{this.state.mean}</p> : null} 
                 <div>
-                    {this.state.directionsHidden && 
                     <div className='directions'>
-                        <button onClick={()=>this.rndRoom()}>Left</button>
-                        <button onClick={()=>this.rndRoom()}>Forward</button>
-                        <button onClick={()=>this.rndRoom()}>Right</button>
-                    </div>}
+                        {!this.state.hideDirections &&<button onClick={()=>this.rndRoom()}>Left</button>}
+                        {!this.state.hideDirections &&<button onClick={()=>this.rndRoom()}>Forward</button>}
+                        {!this.state.hideDirections &&<button onClick={()=>this.rndRoom()}>Right</button>}
+                    </div>
                 </div>
                 <br></br>
                 <Link to='/dashboard'><button>Exit</button></Link>
@@ -90,14 +103,5 @@ class RoomOne extends Component{
         )
     }
 }
-
-const Directions = () => (
-    
-    <div className='directions'>
-        <button onClick={()=>this.rndRoom()}>Left</button>
-        <button onClick={()=>this.rndRoom()}>Forward</button>
-        <button onClick={()=>this.rndRoom()}>Right</button>
-    </div>
-)
 
 export default RoomOne;

@@ -85,9 +85,9 @@ module.exports={
 
     bad: (req, res)=>{
         const db = req.app.get('db');
-        db.bad({praise: req.body.praise, points: req.body.points})
+        db.bad({mean: req.body.mean, points: req.body.points})
         .then(bad=>{
-            res.status(200).json({praise: bad[0].praise, points: bad[0].points})
+            res.status(200).json({mean: bad[0].mean, points: bad[0].points})
         })
     }
 }

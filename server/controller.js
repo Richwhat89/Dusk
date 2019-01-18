@@ -62,8 +62,8 @@ module.exports={
     rndRoom: (req, res)=>{
         const db = req.app.get('db')
         db.rndRoom({room_id: req.body.room_id, setting: req.body.setting})
-        .then(room=>{
-            res.status(200).json({room_id: room[0].room_id, setting: room[0].setting})
+        .then(rndRoom=>{
+            res.status(200).json({room_id: rndRoom[0].room_id, setting: rndRoom[0].setting})
         })
     },
 

@@ -27,10 +27,12 @@ app.get('/auth/hero', controller.hero);
 app.post('/auth/edit', controller.edit);
 
 app.get('/api/room', controller.room);
-app.get('/api/room', controller.rndRoom)
+
+// app.get('/api/rndRoom2', (req, res) => console.log('hit'));
+app.get('/api/rndRoom', controller.rndRoom);
 app.get('/api/events', controller.event);
-app.get('/api/good', controller.good)
-app.get('/api/bad', controller.bad)
+app.get('/api/good', controller.good);
+app.get('/api/bad', controller.bad);
 
 app.listen(process.env.EXPRESS_PORT, ()=>{
     console.log(`listening on port ${process.env.EXPRESS_PORT}`)

@@ -3,14 +3,17 @@ import axios from 'axios';
 const initialState = { 
     user: {},
     event: {},
+    hero: {},
+    monster: {},
     error: ''
 }
 
 const LOGIN = 'LOGIN';
 const REGISTER = 'REGISTER';
-const GET_HERO = 'GET_USER';
+const GET_HERO = 'GET_HERO';
 const EDIT = 'EDIT';
 const GET_EVENT = 'GET_EVENT';
+const GET_MONSTER = 'GET_MONSTER';
 
 export function login(username, password){
     return{
@@ -33,17 +36,17 @@ export function edit(username, password, display_name, email){
     }
 }
 
-export function getHero(){
+export function getHero(hero){
     return{
         type: GET_HERO,
-        payload: axios.get('/auth/hero', )
+        payload: hero
     }
 }
 
-export function event(question, answer){
+export function getMonster(monster){
     return{
-        type: GET_EVENT,
-        payload: axios.get('/api/events', {question, answer})
+        type: GET_MONSTER,
+        payload: monster
     }
 }
 
@@ -65,14 +68,17 @@ export default function reducer(state=initialState, action){
         case EDIT + '_REJECTED':
         return{...state, error: 'invalid'}
 
-        case GET_HERO + '_FULFILLED':
-        return{...state, user: action.payload.data};
-
         case GET_EVENT + '_FULFILLED':
         return{...state, event: action.payload.data}
 
         case GET_EVENT + '_REJECTED':
         return{...state, error: 'question unavailable'}
+
+        case GET_HERO:
+        return{...state, hero: action.payload}
+
+        case GET_MONSTER:
+        return{...state, monster: action.payload}
 
         default:
         return state;

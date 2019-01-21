@@ -5,7 +5,8 @@ import Dashboard from './components/Dashboard';
 import Edit from './components/Edit';
 import Home from './components/Home';
 import Register from './components/Register';
-import RoomOne from './rooms/RoomOne';
+import Class from './rooms/Class';
+import Dungeon from './rooms/Dungeon';
 import End from './rooms/End';
 
 export default(
@@ -14,7 +15,8 @@ export default(
         <Route path='/dashboard' exact component={Dashboard}/>
         <Route path='/register' component={Register}/>
         <Route path='/' exact component={Home}/>
-        <Route path='/rOne' exact component={RoomOne}/>
+        <Route path='/Class' exact component={Class}/>
+        <Route path='/Dungeon' exact component={Dungeon}/>
         <Route path='/end' exact component={End}/>
     </Switch>
 )

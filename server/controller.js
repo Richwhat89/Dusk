@@ -43,14 +43,6 @@ module.exports={
         }
     },
 
-    hero: (req, res)=>{
-        if(req.session.user){
-            res.json(req.session.user)
-        }else{
-            res.status(401).json({error: 'Please log in to play.'})
-        }
-    },
-
     room: (req, res)=>{
         const db = req.app.get('db')
         db.room({room_id: req.body.room_id, setting: req.body.setting})
@@ -88,6 +80,24 @@ module.exports={
         db.bad({mean: req.body.mean, points: req.body.points})
         .then(bad=>{
             res.status(200).json({mean: bad[0].mean, points: bad[0].points})
+        })
+    },
+
+    hero: (req, res)=>{
+        const db = req.app.get('db');
+        db.hero({class: req.body.class, health: req.body.health, weapon: req.body.weapon})
+        .then(hero=>{
+            res.status(200).json(hero)
+        })
+    },
+
+    monster: (req,res)=>{
+        console.log(req.body)
+        const db = req.app.get('db');
+        db.monster({type: req.body.type, health: req.body.health})
+        .then(monster=>{
+            console.log(monster)
+            res.status(200).json(monster)
         })
     }
 }

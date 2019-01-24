@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import { connect } from 'react-redux';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {register} from '../ducks/reducer';
 
 class Register extends Component{
@@ -12,47 +12,35 @@ class Register extends Component{
             display_name: '',
             email: ''
         };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange(e){
+    handleChange=(e)=>{
         this.setState({[e.target.name]: e.target.value})
     }
 
-    handleSubmit(e){
-        e.preventDefault();
-        this.props.register(this.state.username, this.state.password, this.state.display_name, this.state.email)
-    }
-
     render(){
+        console.log(this.props)
         return (
         <div>
             {/* <img src={logo} style={{maxWidth: "100px"}}/> */}
-            <form onSubmit={this.handleSubmit}>
-                <p1>Username: </p1>
+            <div>
+                <p>Username: </p>
                 <input onChange={this.handleChange} value ={this.state.username} name='username'/><br></br>
-                <p1>Password: </p1>
+                <p>Password: </p>
                 <input onChange={this.handleChange} value={this.state.password} name='password' type='password'/><br></br>
-                <p1>Display Name: </p1>
+                <p>Display Name: </p>
                 <input onChange={this.handleChange} value={this.state.display_name} name='display_name'/><br></br>
-                <p1>Email: </p1>
+                <p>Email: </p>
                 <input onChange={this.handleChange} value={this.state.email} name='email'/> <br></br>
-                <button>Register</button><br></br>
-                <Link to='/home'>Cancel</Link>
-            </form>
+                {this.props.user.username ? <Link to='/dashboard'><button>Play!</button></Link>:
+                <button onClick={()=>this.props.register(this.state.username, this.state.password, this.state.display_name, this.state.email)}>Register</button>}
+                <Link to='/'><button>Cancel</button></Link>
+            </div>
         </div>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        username: state.usernsame,
-        password: state.password,
-        display_name: state.display_name,
-        email: state.email
-    }
-}
+const mapStateToProps = (state) => state;
 
 export default connect(mapStateToProps, {register: register})(Register);

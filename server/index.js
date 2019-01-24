@@ -24,6 +24,8 @@ massive(process.env.CONNECTION_STRING)
 app.post('/auth/login', controller.login);
 app.post('/auth/register', controller.register);
 app.post('/auth/edit', controller.edit);
+app.get('/auth/users', controller.user);
+app.get('/auth/user', controller.logout)
 
 app.get('/api/room', controller.room);
 
@@ -33,6 +35,7 @@ app.get('/api/rndRoom', controller.rndRoom);
 app.get('/api/events', controller.event);
 app.get('/api/good', controller.good);
 app.get('/api/bad', controller.bad);
+app.post('/api/endings/total_points', (req,res,next)=>{console.log('hit'); next()}, controller.totalPoints)
 
 app.listen(process.env.EXPRESS_PORT, ()=>{
     console.log(`listening on port ${process.env.EXPRESS_PORT}`)

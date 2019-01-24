@@ -2,6 +2,7 @@ import React,{Component} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {login} from '../ducks/reducer';
+import axios from 'axios';
 
 
 class Login extends Component{
@@ -26,16 +27,18 @@ class Login extends Component{
 
     render(){
         console.log(this.props)
-        if(this.props.user.username){
-            return <Redirect push to='/dashboard'/>;
-        }
+        // if(this.props.user.username){
+        //     return <Redirect push to='/dashboard'/>;
+        // }
         return(
             <div><br></br>
-                <form onSubmit={this.handleSubmit}>
+                <div onSubmit={this.handleSubmit}>
                     <input onChange={this.handleChange} value={this.state.username} name='username'/><br></br>
                     <input onChange={this.handleChange} value={this.state.password} name='password' type='password'/><br></br>
-                    <button>Play</button><br></br>
-                </form>
+                    {this.props.user.username ? <Link to='/dashboard'><button>Play!</button></Link>:
+                    <button onClick={()=>this.props.login(this.state.username, this.state.password)}>Login</button>}
+                    <br></br>
+                </div>
                 <br></br><Link to='/register'>Register</Link>
             </div>
         )

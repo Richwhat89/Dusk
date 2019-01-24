@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import {getHero} from '../ducks/reducer';
-import {login} from '../ducks/reducer';
+import {getHero, login} from '../ducks/reducer';
 
 class Class extends Component{
     constructor(props){

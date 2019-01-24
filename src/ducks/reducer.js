@@ -5,15 +5,18 @@ const initialState = {
     event: {},
     hero: {},
     monster: {},
+    dungeon: {},
     error: ''
 }
 
 const LOGIN = 'LOGIN';
 const REGISTER = 'REGISTER';
-const GET_HERO = 'GET_HERO';
 const EDIT = 'EDIT';
+const GET_USER = 'GET_USER';
+const GET_HERO = 'GET_HERO';
 const GET_EVENT = 'GET_EVENT';
 const GET_MONSTER = 'GET_MONSTER';
+const GET_DUNGEON = 'GET_DUNGEON';
 
 export function login(username, password){
     return{
@@ -32,7 +35,15 @@ export function register(username, password, display_name, email){
 export function edit(username, password, display_name, email){
     return{
         type: EDIT,
-        payload: axios.put('/auth/edit', {username, password, display_name, email})
+        payload: axios.post('/auth/edit', {username, password, display_name, email})
+    }
+}
+
+export function getUser(id){
+    console.log(id)
+    return{
+        type: getUser,
+        payload: axios.get('/auth/users', id)
     }
 }
 
@@ -50,8 +61,16 @@ export function getMonster(monster){
     }
 }
 
+export function getDungeon(dungeon){
+    return{
+        type: GET_DUNGEON,
+        payload: dungeon
+    }
+}
+
 
 export default function reducer(state=initialState, action){
+    console.log(action.type, action.payload)
     switch(action.type){
         case LOGIN + '_FULFILLED':
         return{...state, user: action.payload.data};
@@ -68,6 +87,11 @@ export default function reducer(state=initialState, action){
         case EDIT + '_REJECTED':
         return{...state, error: 'invalid'}
 
+        case GET_USER + '_FULFILLED':
+        return{...state, user: action.payload.data};
+        case GET_USER - '_REJECTED':
+        return{...state, error: 'no user'}
+
         case GET_EVENT + '_FULFILLED':
         return{...state, event: action.payload.data}
 
@@ -79,6 +103,9 @@ export default function reducer(state=initialState, action){
 
         case GET_MONSTER:
         return{...state, monster: action.payload}
+
+        case GET_DUNGEON:
+        return{...state, dungeon: action.payload}
 
         default:
         return state;

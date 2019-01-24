@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import {getHero, login, getMonster} from '../ducks/reducer';
+import {getHero, getDungeon, login} from '../ducks/reducer';
 
 class Dungeon extends Component{
     constructor(props){
@@ -23,43 +23,60 @@ class Dungeon extends Component{
             hideText: false,
             display_name: '',
             monsterType: '',
-            attack: 1
+            attack: 1,
+            killCount: 0,
+            endToggle: false
         };
     }
 
     componentDidMount=()=>
     axios
         .get('/api/room')
-        .then(response=>{console.log(response.data); this.monster()
+        .then(response=>{console.log(response.data); this.monster(); this.multiplier()
         this.setState({room_id: response.data.room_id, setting: response.data.setting})
     })
 
     rndRoom=()=>
     axios
         .get('/api/rndRoom')
-        .then(response=>{console.log(response); this.monster()
-        this.setState({room_id: response.data.room_id, setting: response.data.setting, praiseToggle: false, meanToggle: false, hideTrueFalse: false, hideText: true, isHidden: true, question: '', hideDirections: true})
+        .then(response=>{console.log(response); this.monster(); this.multiplier()
+        this.setState({room_id: response.data.room_id, setting: response.data.setting, praiseToggle: false, meanToggle: false, hideTrueFalse: false, hideText: true, isHidden: true, question: '', hideDirections: true, attack: 1}, ()=>{this.multiplier()})
     })
 
     event=()=>
     axios
         .get('/api/events')
         .then(response=>{console.log(response.data);
-        this.setState({question: response.data.question, answer: response.data.answer, isHidden: false})
+        this.setState({question: response.data.question, answer: response.data.answer, isHidden: false, praiseToggle: false, meanToggle: false})
     })
 
     right=()=>
     axios
         .get('/api/good')
-        .then(response=>{console.log(response.data)
-        this.setState({praise: response.data.praise, monsterHealth: this.state.monsterHealth - response.data.points, praiseToggle: true, hideTrueFalse: true, hideDirections: false, isHidden: true})
-    })
+        .then(response=>{console.log(response.data); this.killCounter()
+        this.setState({
+            praise: response.data.praise, 
+            monsterHealth: this.state.monsterHealth - (response.data.points + this.state.attack), 
+            praiseToggle: true, 
+            hideTrueFalse: true, 
+            hideDirections: false, 
+            isHidden: true
+        }, ()=>{this.killCounter()})})
+
+    // killCounter=()=>{
+    //     console.log('here')
+    //     if(this.state.monsterHealth <= 0){
+    //         this.setState({killCount: this.state.killCount +1})
+    //     }
+    // }
+
+    killCounter=()=>{console.log('anything'); this.setState({killCount: (this.state.monsterHealth <= 0 ? this.state.killCount +1 : this.state.killCount)})}
 
     wrong=()=>
     axios
         .get('/api/bad')
         .then(response=>{console.log(response.data)
-        this.setState({mean: response.data.mean, points: this.state.points + response.data.points, meanToggle: true, hideTrueFalse: true, hideDirections: false, isHidden: true})
+        this.setState({mean: response.data.mean, points: this.state.points - (this.state.monsterHealth - response.data.points), meanToggle: true, hideTrueFalse: true, hideDirections: false, isHidden: true}, ()=>{this.gameOver()})
     })
 
     monster=()=>
@@ -69,22 +86,27 @@ class Dungeon extends Component{
         this.setState({monsterType: response.data[0].type, monsterHealth: response.data[0].health})
     })
 
-    attack=(attack)=>{
-        if((this.props.hero.weapon === 'Axe' && attack * .5) ||
-            (this.props.hero.weapon === ' Daggers' && attack * 3) ||
-            (this.props.hero.weapon === 'Tome' && attack * 2) ||
-            (this.props.hero.weapon === 'Staff' && attack * 1.75)){
-                return attack
-            }
-
+    multiplier=()=>{
+        ((this.props.hero.weapon === 'Axe' && this.setState({attack: this.state.attack * 1.75})) ||
+        (this.props.hero.weapon === 'Daggers' && this.setState({attack: this.state.attack * 3})) ||
+        (this.props.hero.weapon === 'Tome' && this.setState({attack: this.state.attack * 2})) ||
+        (this.props.hero.weapon === 'Staff' && this.setState({attack: this.state.attack * 1})))
     }
+
+    total_points=(killCount)=>
+    axios
+        .put('/api/endings/total_points', {killCount})
+
+    gameOver=()=>{this.props.getDungeon(this.state); this.setState({endToggle: this.state.points <= 0 ? true : null})}
 
     render(){
         console.log(this.props)
         console.log(this.state.monsterHealth)
+        console.log(this.state.attack)
+        console.log(this.state.killCount)
         return(
             <div>
-                <p></p>
+                <p>{this.props.user.display_name}'s Dungeon Trial</p>
                 <p><br></br>
                     {this.state.setting}
                 </p>
@@ -93,7 +115,7 @@ class Dungeon extends Component{
                     <p>An ominous voice enters your mind, "You must face my minions before the doors in each room will unlock. 
                     Answer my questions to proceed, if freedom is what you seek."</p>}
                     <br></br>
-                    {this.state.monsterHealth != 0 ? this.state.isHidden && <button onClick={()=>this.event()}>Battle!</button>:null}
+                    {this.state.monsterHealth > 0 ? this.state.isHidden && <button onClick={()=>this.event()}>Battle!</button>:null}
                     {!this.state.isHidden && this.state.question}
                     <br></br>
                 </div>
@@ -108,10 +130,10 @@ class Dungeon extends Component{
                 {this.state.meanToggle ? <p>{this.state.mean}</p> : null} 
                 <div>
                     <div className='directions'>
-                        {this.state.monsterHealth === 0 ? !this.state.hideDirections &&<button onClick={()=>this.rndRoom()}>Left</button>:null}
-                        {this.state.monsterHealth === 0 ? !this.state.hideDirections &&<button onClick={()=>this.rndRoom()}>Forward</button>:null}
-                        {this.state.monsterHealth === 0 ? !this.state.hideDirections &&<button onClick={()=>this.rndRoom()}>Right</button>:null}
-                    </div>
+                        {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<button onClick={()=>this.rndRoom()}>Left</button>:null}
+                        {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<button onClick={()=>this.rndRoom()}>Forward</button>:null}
+                        {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<button onClick={()=>this.rndRoom()}>Right</button>:null}
+                    </div><br></br>
                 </div>
 
                 <div>
@@ -127,6 +149,7 @@ class Dungeon extends Component{
                 </div>
                 <br></br>
                 <Link to='/dashboard'><button>Exit</button></Link>
+                {this.state.endToggle ? <Redirect to='/end'/> : null}
             </div>
         )
     }
@@ -136,7 +159,8 @@ const mapStateToProps = (state) => {
     return{
         user: state.user,
         hero: state.hero,
+        dungeon: state.dungeon
     }
 }
 
-export default connect(mapStateToProps, {getHero, login})(Dungeon);
+export default connect(mapStateToProps, {getHero, login, getDungeon})(Dungeon);

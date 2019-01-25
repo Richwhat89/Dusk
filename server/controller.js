@@ -136,9 +136,26 @@ module.exports={
     },
 
     totalPoints: (req, res)=>{
-        console.log(typeof req.body.killCount)
+        console.log(req.body)
         const db = req.app.get('db');
-        db.totalPoints(req.body.killCount)
+        db.totalPoints([req.body.killCount, req.body.id])
+        .then(()=>{res.sendStatus(200)})
+    },
+
+    data: (req, res)=>{
+        const db = req.app.get('db');
+        db.highscore(req.params.id)
+        .then(data=>{
+            console.log(data)
+            res.status(200).json(data)
+        })
+    },
+
+    delete: (req, res)=>{
+        console.log(req.params.id)
+        const db = req.app.get('db');
+        db.deleteUser(+req.params.id)
+        .then(()=>{res.sendStatus(200)})
     },
 
     logout: (req, res)=>{

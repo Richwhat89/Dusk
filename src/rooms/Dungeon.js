@@ -63,12 +63,6 @@ class Dungeon extends Component{
             isHidden: true
         }, ()=>{this.killCounter()})})
 
-    // killCounter=()=>{
-    //     console.log('here')
-    //     if(this.state.monsterHealth <= 0){
-    //         this.setState({killCount: this.state.killCount +1})
-    //     }
-    // }
 
     killCounter=()=>{console.log('anything'); this.setState({killCount: (this.state.monsterHealth <= 0 ? this.state.killCount +1 : this.state.killCount)})}
 
@@ -104,6 +98,7 @@ class Dungeon extends Component{
         console.log(this.state.monsterHealth)
         console.log(this.state.attack)
         console.log(this.state.killCount)
+        
         return(
             <div>
                 <p>{this.props.user.display_name}'s Dungeon Trial</p>
@@ -148,6 +143,9 @@ class Dungeon extends Component{
                     </div>
                 </div>
                 <br></br>
+                    <div>
+                        Kill count: {this.state.killCount}
+                    </div><br></br><br></br>
                 <Link to='/dashboard'><button>Exit</button></Link>
                 {this.state.endToggle ? <Redirect to='/end'/> : null}
             </div>

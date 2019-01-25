@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import {login, getUser, getDungeon} from '../ducks/reducer';
+import {login, getUser, getDungeon, getData} from '../ducks/reducer';
 
 class Dashboard extends Component{
     constructor(props){
@@ -17,7 +17,7 @@ class Dashboard extends Component{
         console.log('fdshjhjbhasoidufhasjkldfhasojk')
         axios
         .get('/auth/users')
-        .then(response=>{console.log(response); this.props.getUser(response)
+        .then(response=>{console.log(response); this.props.getUser(response); this.props.getData(this.props.user.id)
         this.setState({users: [response.data]})
         })
     }
@@ -51,4 +51,4 @@ class Dashboard extends Component{
 
 const mapStateToProps = (state) => state;
 
-export default connect(mapStateToProps, {login, getUser, getDungeon})(Dashboard);
+export default connect(mapStateToProps, {login, getUser, getDungeon, getData})(Dashboard);

@@ -6,6 +6,7 @@ const initialState = {
     hero: {},
     monster: {},
     dungeon: {},
+    getData: {},
     error: ''
 }
 
@@ -17,6 +18,7 @@ const GET_HERO = 'GET_HERO';
 const GET_EVENT = 'GET_EVENT';
 const GET_MONSTER = 'GET_MONSTER';
 const GET_DUNGEON = 'GET_DUNGEON';
+const GET_DATA = 'GET_DATA';
 
 export function login(username, password){
     return{
@@ -68,27 +70,38 @@ export function getDungeon(dungeon){
     }
 }
 
+export function getData(id){
+    return{
+        type: GET_DATA,
+        payload: axios.get(`/api/analytics/${id}`)
+    }
+}
+
 
 export default function reducer(state=initialState, action){
     console.log(action.type, action.payload)
     switch(action.type){
         case LOGIN + '_FULFILLED':
         return{...state, user: action.payload.data};
+
         case LOGIN + '_REJECTED':
         return{...state, error: 'Unable to log in'};
 
         case REGISTER + '_FULFILLED':
         return{...state, user: action.payload.data};
+
         case REGISTER + '_REJECTED':
         return{...state, error: 'invalid'}
 
         case EDIT + '_FULFILLED':
         return{...state, user: action.payload.data};
+
         case EDIT + '_REJECTED':
         return{...state, error: 'invalid'}
 
         case GET_USER + '_FULFILLED':
         return{...state, user: action.payload.data};
+
         case GET_USER - '_REJECTED':
         return{...state, error: 'no user'}
 
@@ -97,6 +110,12 @@ export default function reducer(state=initialState, action){
 
         case GET_EVENT + '_REJECTED':
         return{...state, error: 'question unavailable'}
+
+        case GET_DATA + '_FULFILLED':
+        return{...state, data: action.payload.data};
+
+        case GET_DATA - '_REJECTED':
+        return{...state, error: 'no user'}
 
         case GET_HERO:
         return{...state, hero: action.payload}

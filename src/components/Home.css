@@ -1,0 +1,13 @@
+.home {
+    background-image: url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/0kjHIH6/dark-and-spooky-dungeon-with-torches-hanging-on-a-brick-wall_4bqefvc9l__F0000.png");
+    background-color: black;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+

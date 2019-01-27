@@ -4,6 +4,10 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {getHero, getDungeon, login} from '../ducks/reducer';
 
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import 'typeface-roboto';
+
 class Dungeon extends Component{
     constructor(props){
         super(props);
@@ -100,55 +104,58 @@ class Dungeon extends Component{
         console.log(this.state.killCount)
         
         return(
+            <>
+            <CssBaseline/>
             <div>
-                <p>{this.props.user.display_name}'s Dungeon Trial</p>
-                <p><br></br>
+                <h1>{this.props.user.display_name}'s Dungeon Trial</h1>
+                <h4><br></br>
                     {this.state.setting}
-                </p>
-                <div>
+                </h4>
+                <h4>
                     {!this.state.hideText && this.state.loading && 
                     <p>An ominous voice enters your mind, "You must face my minions before the doors in each room will unlock. 
                     Answer my questions to proceed, if freedom is what you seek."</p>}
                     <br></br>
-                    {this.state.monsterHealth > 0 ? this.state.isHidden && <button onClick={()=>this.event()}>Battle!</button>:null}
+                    {this.state.monsterHealth > 0 ? this.state.isHidden && <Button variant="contained" onClick={()=>this.event()}>Battle!</Button>:null}
                     {!this.state.isHidden && this.state.question}
                     <br></br>
-                </div>
+                </h4>
                     {!this.state.isHidden && 
                 <div>
-                    {<button onClick={this.state.answer === 'True' ? this.right : this.wrong}>True</button>}
+                    {<Button variant="contained" onClick={this.state.answer === 'True' ? this.right : this.wrong}>True</Button>}
 
-                    {<button onClick={this.state.answer === 'False' ? this.right : this.wrong}>False</button>}
+                    {<Button variant="contained" onClick={this.state.answer === 'False' ? this.right : this.wrong}>False</Button>}
                 </div>}
                 <br></br>
-                {this.state.praiseToggle ? <p>{this.state.praise}</p> : null}
-                {this.state.meanToggle ? <p>{this.state.mean}</p> : null} 
+                {this.state.praiseToggle ? <subtitle2>{this.state.praise}</subtitle2> : null}
+                {this.state.meanToggle ? <subtitle2>{this.state.mean}</subtitle2> : null} 
                 <div>
                     <div className='directions'>
-                        {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<button onClick={()=>this.rndRoom()}>Left</button>:null}
-                        {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<button onClick={()=>this.rndRoom()}>Forward</button>:null}
-                        {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<button onClick={()=>this.rndRoom()}>Right</button>:null}
+                        {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<Button variant="contained" onClick={()=>this.rndRoom()}>Left</Button>:null}
+                        {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<Button variant="contained" onClick={()=>this.rndRoom()}>Forward</Button>:null}
+                        {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<Button variant="contained" onClick={()=>this.rndRoom()}>Right</Button>:null}
                     </div><br></br>
                 </div>
 
-                <div>
-                    <div>
+                <subtitle2>
+                    <subtitle2>
                         {this.props.hero.class}<p></p>
                         {this.state.points}
-                    </div>
+                    </subtitle2>
                     <p></p>
-                    <div>
+                    <subtitle2>
                         {this.state.monsterType}<p></p>
                         {this.state.monsterHealth}
-                    </div>
-                </div>
+                    </subtitle2>
+                </subtitle2>
                 <br></br>
-                    <div>
+                    <subtitle2>
                         Kill count: {this.state.killCount}
-                    </div><br></br><br></br>
-                <Link to='/dashboard'><button>Exit</button></Link>
+                    </subtitle2><br></br><br></br>
+                <Link to='/dashboard'><Button variant="contained">Exit</Button></Link>
                 {this.state.endToggle ? <Redirect to='/end'/> : null}
             </div>
+            </>
         )
     }
 }

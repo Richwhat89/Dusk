@@ -4,6 +4,7 @@ const initialState = {
     user: {},
     event: {},
     hero: {},
+    data: [],
     monster: {},
     dungeon: {},
     getData: {},
@@ -19,6 +20,7 @@ const GET_EVENT = 'GET_EVENT';
 const GET_MONSTER = 'GET_MONSTER';
 const GET_DUNGEON = 'GET_DUNGEON';
 const GET_DATA = 'GET_DATA';
+const CHANGE_USER = 'CHANGE_USER';
 
 export function login(username, password){
     return{
@@ -77,6 +79,13 @@ export function getData(id){
     }
 }
 
+export function changeUser(){
+return{
+    type: CHANGE_USER,
+    payload: {}
+    }
+}
+
 
 export default function reducer(state=initialState, action){
     console.log(action.type, action.payload)
@@ -125,6 +134,9 @@ export default function reducer(state=initialState, action){
 
         case GET_DUNGEON:
         return{...state, dungeon: action.payload}
+
+        case CHANGE_USER:
+        return{...state, user: action.payload}
 
         default:
         return state;

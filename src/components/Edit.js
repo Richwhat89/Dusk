@@ -4,6 +4,10 @@ import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import {edit} from '../ducks/reducer';
 
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import 'typeface-roboto';
+
 class Edit extends Component{
     constructor(props){
         super(props);
@@ -35,6 +39,8 @@ class Edit extends Component{
     render(){
         console.log(this.props.user.id)
         return(
+            <>
+            <CssBaseline/>
             <div>
             <form onSubmit={this.handleSubmit}>
                 <p>Username: </p>
@@ -45,11 +51,12 @@ class Edit extends Component{
                 <input onChange={this.handleChange} placeholder={this.props.display_name} value={this.props.display_name} name='display_name'/><br></br>
                 <p>Email: </p>
                 <input onChange={this.handleChange} placeholder={this.props.email} value={this.props.email} name='email'/> <br></br>
-                {<button onClick={()=>this.props.edit()}>Update</button> ? <Link to='/dashboard'><button>Dashboard</button></Link>:<button onClick={()=>this.props.edit()}>Update</button>}<br></br>
-                <Link to='/register'><button onClick={()=>this.deleteUser(this.props.user.id)}>*DELETE USER*</button></Link>
-                <Link to='/dashboard'><button>Cancel</button></Link>
+                {<Button onClick={()=>this.props.edit()}>Update</Button> ? <Link to='/dashboard'><Button variant="contained">Dashboard</Button></Link>:<Button variant="contained" onClick={()=>this.props.edit()}>Update</Button>}<br></br>
+                <Link to='/register'><Button variant="contained" onClick={()=>this.deleteUser(this.props.user.id)}>*DELETE USER*</Button></Link>
+                <Link to='/dashboard'><Button variant="contained">Cancel</Button></Link>
             </form>
         </div>
+        </>
         )
     }
 }

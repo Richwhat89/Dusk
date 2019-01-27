@@ -7,16 +7,13 @@ import './App.css';
 class App extends Component {
   render() {
     return (
+      <div className='App'>
         <HashRouter>
           {router}
         </HashRouter>
-
+      </div>
     );
   }
 }
-
-// render={()=>this.props.user.username ? <Dashboard/>: <Redirect to='/'/>}
-
-// export default connect(state=>state, {getHero}) (App);
 
 export default App; 

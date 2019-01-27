@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import {register} from '../ducks/reducer';
 
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import 'typeface-roboto';
+
 class Register extends Component{
     constructor(props){
         super(props);
@@ -21,6 +25,8 @@ class Register extends Component{
     render(){
         console.log(this.props)
         return (
+            <>
+            <CssBaseline/>
         <div>
             {/* <img src={logo} style={{maxWidth: "100px"}}/> */}
             <div>
@@ -32,11 +38,12 @@ class Register extends Component{
                 <input onChange={this.handleChange} value={this.state.display_name} name='display_name'/><br></br>
                 <p>Email: </p>
                 <input onChange={this.handleChange} value={this.state.email} name='email'/> <br></br>
-                {this.props.user.username ? <Link to='/dashboard'><button>Play!</button></Link>:
-                <button onClick={()=>this.props.register(this.state.username, this.state.password, this.state.display_name, this.state.email)}>Register</button>}
-                <Link to='/'><button>Cancel</button></Link>
+                {this.props.user.username ? <Link to='/dashboard'><Button variant="contained">Play!</Button></Link>:
+                <Button variant="contained" onClick={()=>this.props.register(this.state.username, this.state.password, this.state.display_name, this.state.email)}>Register</Button>}
+                <Link to='/'><Button variant="contained">Cancel</Button></Link>
             </div>
         </div>
+        </>
         )
     }
 }

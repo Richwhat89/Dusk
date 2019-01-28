@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {getHero, login} from '../ducks/reducer';
 
+import './Class.css';
+
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import 'typeface-roboto';
@@ -27,16 +29,18 @@ class Class extends Component{
     render(){
         // const{hero}=this.state;
         return(
-            <div>{this.state.heros.map(hero=>{
+            <div className="background">{this.state.heros.map(hero=>{
                 return (
                 <>
                 <CssBaseline/>
+                <div className='heros'>
                 <Link to='/Dungeon'>
-                <Button variant="contained" onClick={()=>this.props.getHero(hero)}>
-                {hero.class}<br></br>
-                {hero.health}<br></br>
-                {hero.weapon}<br></br>
+                <Button className="card" variant="contained" onClick={()=>this.props.getHero(hero)}>
+                <div>{hero.class}</div><br></br>
+                <div>{hero.health}</div><br></br>
+                <div>{hero.weapon}</div><br></br>
                 </Button></Link>
+                </div>
                 </>
                 )
             })}</div>

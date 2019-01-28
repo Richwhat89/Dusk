@@ -1,0 +1,19 @@
+.background {
+    background-image: url("https://s3.us-east-2.amazonaws.com/personalproject89/dungeon+background.jpg");
+    background-color: black;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    color:lightgrey;
+}
+
+.stuff {
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    margin-bottom: 25vh;
+    justify-content: flex-end;
+    color: lightgray;
+    font-weight: bolder;
+}

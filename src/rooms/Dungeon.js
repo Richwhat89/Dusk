@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {getHero, getDungeon, login} from '../ducks/reducer';
 
+import './Dungeon.css';
+
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import 'typeface-roboto';
@@ -106,54 +108,38 @@ class Dungeon extends Component{
         return(
             <>
             <CssBaseline/>
-            <div>
+            <div className='background'>
                 <h1>{this.props.user.display_name}'s Dungeon Trial</h1>
-                <h4><br></br>
-                    {this.state.setting}
-                </h4>
                 <h4>
+                    {this.state.setting}<br></br>
                     {!this.state.hideText && this.state.loading && 
                     <p>An ominous voice enters your mind, "You must face my minions before the doors in each room will unlock. 
-                    Answer my questions to proceed, if freedom is what you seek."</p>}
-                    <br></br>
+                    Answer my questions to proceed, if freedom is what you seek."</p>}<br></br>
                     {this.state.monsterHealth > 0 ? this.state.isHidden && <Button variant="contained" onClick={()=>this.event()}>Battle!</Button>:null}
                     {!this.state.isHidden && this.state.question}
-                    <br></br>
                 </h4>
-                    {!this.state.isHidden && 
-                <div>
+                <div className='stuff'>
+                    {!this.state.isHidden && <div className='logic'>
                     {<Button variant="contained" onClick={this.state.answer === 'True' ? this.right : this.wrong}>True</Button>}
-
                     {<Button variant="contained" onClick={this.state.answer === 'False' ? this.right : this.wrong}>False</Button>}
-                </div>}
-                <br></br>
+                    </div>}
                 {this.state.praiseToggle ? <subtitle2>{this.state.praise}</subtitle2> : null}
                 {this.state.meanToggle ? <subtitle2>{this.state.mean}</subtitle2> : null} 
-                <div>
                     <div className='directions'>
                         {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<Button variant="contained" onClick={()=>this.rndRoom()}>Left</Button>:null}
                         {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<Button variant="contained" onClick={()=>this.rndRoom()}>Forward</Button>:null}
                         {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<Button variant="contained" onClick={()=>this.rndRoom()}>Right</Button>:null}
-                    </div><br></br>
-                </div>
+                    </div>
 
-                <subtitle2>
-                    <subtitle2>
-                        {this.props.hero.class}<p></p>
-                        {this.state.points}
-                    </subtitle2>
-                    <p></p>
-                    <subtitle2>
-                        {this.state.monsterType}<p></p>
-                        {this.state.monsterHealth}
-                    </subtitle2>
-                </subtitle2>
-                <br></br>
-                    <subtitle2>
-                        Kill count: {this.state.killCount}
-                    </subtitle2><br></br><br></br>
-                <Link to='/dashboard'><Button variant="contained">Exit</Button></Link>
+                    <p>{this.props.hero.class}
+                        {this.state.points}</p>
+                    <p>{this.state.monsterType}
+                    {this.state.monsterHealth}</p>
+                    <p>Kill count: {this.state.killCount}</p>
+                
+                <Link to='/'><Button variant="contained">Exit</Button></Link>
                 {this.state.endToggle ? <Redirect to='/end'/> : null}
+                </div>
             </div>
             </>
         )

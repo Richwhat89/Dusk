@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import {Link} from 'react-router-dom';
 import {register} from '../ducks/reducer';
 
+import './Register.css';
+
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import 'typeface-roboto';
@@ -27,7 +29,7 @@ class Register extends Component{
         return (
             <>
             <CssBaseline/>
-        <div>
+        <div className='register'>
             {/* <img src={logo} style={{maxWidth: "100px"}}/> */}
             <div>
                 <p>Username: </p>

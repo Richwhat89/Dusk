@@ -5,6 +5,8 @@ import {connect} from 'react-redux';
 import {Bar, HorizontalBar} from 'react-chartjs-2';
 import {getHero, login, getDungeon, getData} from '../ducks/reducer';
 
+import './End.css'
+
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import 'typeface-roboto';
@@ -68,7 +70,7 @@ class End extends Component{
         return(
             <>
             <CssBaseline/>
-            <div>
+            <div className='end'>
                 <h4>
                     <br></br>YOU DIED!<br></br><br></br>
                     {this.props.user.display_name}'s Dungeon Trial has come to a devestating end!<br></br><br></br>
@@ -76,17 +78,20 @@ class End extends Component{
                     Your weak {this.props.hero.class} was killed by a {this.props.dungeon.monsterType}!<br></br><br></br>
                     Kill Count: {this.props.dungeon.killCount}
                 </h4><br></br><br></br>
-
+                <div className="graph">
                 <HorizontalBar data={{
                 labels: labels,
                 datasets:[{
                     label: "High Scores",
                     backgroundColor: 'rgba(255, 99, 132, .6)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderColor: 'rgba(255, 99, 99, 1)',
                     data: data
                 }]
-            }}/><br></br>
-            <Link to='/dashboard'><Button variant="contained">Exit</Button></Link>
+            }}/>
+            
+            <br></br>
+            <Link to='/'><Button variant="contained">Exit</Button></Link>
+            </div>
             </div>
             </>
         )

@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import {edit} from '../ducks/reducer';
 
+import './Edit.css'
+
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import 'typeface-roboto';
@@ -41,7 +43,7 @@ class Edit extends Component{
         return(
             <>
             <CssBaseline/>
-            <div>
+            <div className='edit'>
             <form onSubmit={this.handleSubmit}>
                 <p>Username: </p>
                 <input onChange={this.handleChange} placeholder={this.props.username} value ={this.props.username} name='username'/><br></br>

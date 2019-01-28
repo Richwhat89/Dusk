@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {login, getUser, getDungeon, getData, changeUser} from '../ducks/reducer';
 
+import './Dashboard.css';
+
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import 'typeface-roboto';
@@ -39,9 +41,9 @@ class Dashboard extends Component{
         return(
             <>
             <CssBaseline/>
-            <div>{this.state.users.map(user=>{
+            <div className="dashboard">{this.state.users.map(user=>{
             return(
-            <div><h1>Welcome!</h1>
+            <div className='body'><h1>Welcome</h1>
                     <h1>{this.props.user.display_name}</h1>
                     <Link to='/class'><Button variant="contained">New Trial</Button></Link><br></br>
                     {/* <Link to='/dungeon'><Button variant="contained" onClick={()=>getDungeon()}>Resume Trial</Button></Link> */}

@@ -128,7 +128,7 @@ module.exports={
     monster: (req,res)=>{
         console.log(req.body)
         const db = req.app.get('db');
-        db.monster({type: req.body.type, health: req.body.health})
+        db.monster({type: req.body.type, health: req.body.health, sprite: req.body.sprite})
         .then(monster=>{
             console.log(monster)
             res.status(200).json(monster)

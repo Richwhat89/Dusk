@@ -84,7 +84,7 @@ class End extends Component{
                 datasets:[{
                     label: "High Scores",
                     backgroundColor: 'rgba(255, 99, 132, .6)',
-                    borderColor: 'rgba(255, 99, 99, 1)',
+                    borderColor: 'rgba(0, 0, 0, 1)',
                     data: data
                 }]
             }}/>

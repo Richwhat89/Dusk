@@ -23,6 +23,7 @@
     "react-sound": "^1.2.0",
     "redux": "^4.0.1",
     "redux-promise-middleware": "^5.1.1",
+    "scss": "^0.2.4",
     "typeface-roboto": "0.0.54"
   },
   "scripts": {

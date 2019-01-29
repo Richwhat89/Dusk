@@ -60,14 +60,8 @@ class Dungeon extends Component{
     axios
         .get('/api/good')
         .then(response=>{console.log(response.data); this.killCounter()
-        this.setState({
-            praise: response.data.praise, 
-            monsterHealth: this.state.monsterHealth - (response.data.points + this.state.attack), 
-            praiseToggle: true, 
-            hideTrueFalse: true, 
-            hideDirections: false, 
-            isHidden: true
-        }, ()=>{this.killCounter()})})
+        this.setState({praise: response.data.praise, monsterHealth: this.state.monsterHealth - (response.data.points + this.state.attack), praiseToggle: true, hideTrueFalse: true, hideDirections: false, isHidden: true}, ()=>{this.killCounter()})
+    })
 
 
     killCounter=()=>{console.log('anything'); this.setState({killCount: (this.state.monsterHealth <= 0 ? this.state.killCount +1 : this.state.killCount)})}
@@ -83,7 +77,7 @@ class Dungeon extends Component{
     axios
         .get('/api/monster')
         .then(response=>{console.log(response.data)
-        this.setState({monsterType: response.data[0].type, monsterHealth: response.data[0].health})
+        this.setState({monsterType: response.data[0].type, monsterHealth: response.data[0].health, sprite: response.data[0].sprite})
     })
 
     multiplier=()=>{
@@ -104,6 +98,7 @@ class Dungeon extends Component{
         console.log(this.state.monsterHealth)
         console.log(this.state.attack)
         console.log(this.state.killCount)
+        console.log(this.state.sprite)
         
         return(
             <>
@@ -116,7 +111,7 @@ class Dungeon extends Component{
                     <p>An ominous voice enters your mind, "You must face my minions before the doors in each room will unlock. 
                     Answer my questions to proceed, if freedom is what you seek."</p>}<br></br>
                     {this.state.monsterHealth > 0 ? this.state.isHidden && <Button variant="contained" onClick={()=>this.event()}>Battle!</Button>:null}
-                    {!this.state.isHidden && this.state.question}
+                    <span className='question'>{!this.state.isHidden && this.state.question}</span>
                 </h4>
                 <div className='stuff'>
                     {!this.state.isHidden && <div className='logic'>
@@ -130,13 +125,21 @@ class Dungeon extends Component{
                         {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<Button variant="contained" onClick={()=>this.rndRoom()}>Forward</Button>:null}
                         {this.state.monsterHealth <= 0 ? !this.state.hideDirections &&<Button variant="contained" onClick={()=>this.rndRoom()}>Right</Button>:null}
                     </div>
-
-                    <p>{this.props.hero.class}
-                        {this.state.points}</p>
-                    <p>{this.state.monsterType}
-                    {this.state.monsterHealth}</p>
-                    <p>Kill count: {this.state.killCount}</p>
+                    <div className='battle'>
+                    <div className='hero'>
+                    <p>{this.props.hero.class}</p>
+                    <p>{this.state.points}</p>
+                        <img src={this.props.hero.sprite} ref='herosprite' className='img'></img>
+                    </div>
                 
+                    <div className='enemy'>
+                    <p>{this.state.monsterType}</p>
+                    <p>{this.state.monsterHealth}</p>
+                        <img src={this.state.sprite} ref='enemysprite' className='img_enemy'></img>
+                    </div>
+                    
+                    </div>
+                    <p>Kill count: {this.state.killCount}</p>
                 <Link to='/'><Button variant="contained">Exit</Button></Link>
                 {this.state.endToggle ? <Redirect to='/end'/> : null}
                 </div>

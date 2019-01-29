@@ -4,7 +4,7 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    height: 100vh;
+    min-height: 100vh;
     color:lightgrey;
 }
 
@@ -13,7 +13,43 @@
     flex-direction: column;
     height: 40vh;
     margin-bottom: 25vh;
-    justify-content: flex-end;
+    justify-content: center;
     color: lightgray;
     font-weight: bolder;
+    /* border: 1px solid white; */
+}
+
+.question{
+    font-size: 3vh;
+    font-weight: bolder;
+}
+
+.enemy{
+    height: 200px;
+    width: 150px; 
+    /* border: 1px solid white; */
+}
+
+.hero{
+    height: 200px;
+    width: 150px;
+    /* border: 1px solid white; */
+}
+
+.img_enemy {
+    height: 130px;
+    width: 130px;
+    image-rendering: pixelated;
+}
+
+.battle{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    width: 100vw;
+    height: 40vh;
+    justify-content: space-evenly;
+    /* background-color: black;
+    background-image: linear-gradient(purple, black);
+    background-size: contain; */
 }

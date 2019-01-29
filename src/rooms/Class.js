@@ -36,9 +36,12 @@ class Class extends Component{
                 <div className='heros'>
                 <Link to='/Dungeon'>
                 <Button className="card" variant="contained" onClick={()=>this.props.getHero(hero)}>
+                <div className='format'>
+                <img src={hero.sprite} ref="sprite" className='img'></img><br></br>
                 <div>{hero.class}</div><br></br>
                 <div>{hero.health}</div><br></br>
                 <div>{hero.weapon}</div><br></br>
+                </div>
                 </Button></Link>
                 </div>
                 </>

@@ -12,6 +12,7 @@
     "express": "^4.16.4",
     "express-session": "^1.15.6",
     "massive": "^5.7.2",
+    "node-sass": "^4.11.0",
     "promise-middleware": "^1.0.7",
     "react": "^16.7.0",
     "react-chartjs-2": "^2.7.4",
@@ -23,6 +24,7 @@
     "react-sound": "^1.2.0",
     "redux": "^4.0.1",
     "redux-promise-middleware": "^5.1.1",
+    "sass": "^1.16.1",
     "scss": "^0.2.4",
     "typeface-roboto": "0.0.54"
   },

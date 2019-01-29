@@ -3,7 +3,7 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {Bar, HorizontalBar} from 'react-chartjs-2';
-import {getHero, login, getDungeon, getData} from '../ducks/reducer';
+import {getHero, login, getDungeon, getData, changeUser} from '../ducks/reducer';
 
 import './End.css'
 
@@ -26,6 +26,12 @@ class End extends Component{
     axios
         .post('/api/endings/total_points', {killCount: this.props.dungeon.killCount, id: this.props.user.id})
         .then(this.props.getData(this.props.user.id))
+    }
+
+    logout=()=>{
+        this.props.changeUser()
+        axios
+        .get('/auth/user')
     }
 
     render(){
@@ -90,7 +96,7 @@ class End extends Component{
             }}/>
             
             <br></br>
-            <Link to='/'><Button variant="contained">Exit</Button></Link>
+            <Link to='/'><Button variant="contained" onClick={()=>this.logout()}>Exit</Button></Link>
             </div>
             </div>
             </>
@@ -107,4 +113,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getHero, login, getDungeon, getData})(End);
+export default connect(mapStateToProps, {getHero, login, getDungeon, getData, changeUser})(End);

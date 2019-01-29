@@ -1,0 +1,108 @@
+$primary-color: #d3d3d3;
+$img-height: 130px;
+$img-width: 130px;
+
+.background {
+    background-image: url("https://s3.us-east-2.amazonaws.com/personalproject89/dungeon+background.jpg");
+    background-color: black;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    color: $primary-color;
+}
+
+.stuff {
+    display: flex;
+    flex-direction: column;
+    height: 40vh;
+    margin-bottom: 25vh;
+    justify-content: center;
+    color: $primary-color;
+    font-weight: bolder;
+    /* border: 1px solid white; */
+}
+
+.question{
+    font-size: 3vh;
+    font-weight: bolder;
+    font-family: 'Permanent Marker', cursive;
+}
+
+@mixin transform($property){
+    -webkit-transform: $property;
+    -ms-transform: $property; 
+    transform: translateX($property);
+}
+
+@keyframes onClick{
+    0%{
+        @include transform(40vw)
+    }
+    100%{
+        @include transform(0vw)
+    }
+}
+
+@keyframes onClick2{
+    0%{
+        @include transform(40vw)
+    }
+    100%{
+        @include transform(0vw)
+    }
+}
+
+@keyframes heroClick{
+    0%{
+        @include transform(-40vw)
+    }
+    100%{
+        @include transform(5vw)
+    }
+}
+
+
+.enemy{
+    height: 200px;
+    width: 150px; 
+    /* border: 1px solid white; */
+    // transition: onClick 1s linear;
+    
+}
+
+.img_hero{
+    height: $img-height;
+    width: $img-width;
+    /* border: 1px solid white; */
+    animation: heroClick 1s ease-in;
+}
+
+.img_enemy {
+    height: $img-height;
+    width: $img-width;
+    image-rendering: pixelated;
+    animation: onClick 1s ease-in;
+}
+
+.img_enemy2 {
+    height: $img-height;
+    width: $img-width;
+    image-rendering: pixelated;
+    animation: onClick2 1s ease-in;
+}
+
+.battle{
+    display: flex;
+    flex-direction: row;
+    // border: 1px solid black;
+    width: 100vw;
+    height: 40vh;
+    justify-content: space-evenly;
+    /* background-color: black;
+    background-image: linear-gradient(purple, black);
+    background-size: contain; */
+}
+
+
+    

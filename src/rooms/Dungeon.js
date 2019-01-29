@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link, Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import {getHero, getDungeon, login} from '../ducks/reducer';
+import {getHero, getDungeon, login, changeUser} from '../ducks/reducer';
 
 import './Dungeon.css';
 
@@ -31,7 +31,8 @@ class Dungeon extends Component{
             monsterType: '',
             attack: 1,
             killCount: 0,
-            endToggle: false
+            endToggle: false,
+            enemyImage: 'img_enemy'
         };
     }
 
@@ -45,8 +46,8 @@ class Dungeon extends Component{
     rndRoom=()=>
     axios
         .get('/api/rndRoom')
-        .then(response=>{console.log(response); this.monster(); this.multiplier()
-        this.setState({room_id: response.data.room_id, setting: response.data.setting, praiseToggle: false, meanToggle: false, hideTrueFalse: false, hideText: true, isHidden: true, question: '', hideDirections: true, attack: 1}, ()=>{this.multiplier()})
+        .then(response=>{console.log(response); this.multiplier()
+        this.setState({room_id: response.data.room_id, setting: response.data.setting, praiseToggle: false, meanToggle: false, hideTrueFalse: false, hideText: true, isHidden: true, question: '', hideDirections: true, attack: 1, enemyImage: this.state.enemyImage === 'img_enemy' ? 'img_enemy2': 'img_enemy'}, ()=>{this.multiplier(); this.monster()})
     })
 
     event=()=>
@@ -93,6 +94,12 @@ class Dungeon extends Component{
 
     gameOver=()=>{this.props.getDungeon(this.state); this.setState({endToggle: this.state.points <= 0 ? true : null})}
 
+    logout=()=>{
+        this.props.changeUser()
+        axios
+        .get('/auth/user')
+    }
+
     render(){
         console.log(this.props)
         console.log(this.state.monsterHealth)
@@ -129,18 +136,18 @@ class Dungeon extends Component{
                     <div className='hero'>
                     <p>{this.props.hero.class}</p>
                     <p>{this.state.points}</p>
-                        <img src={this.props.hero.sprite} ref='herosprite' className='img'></img>
+                        <img src={this.props.hero.sprite} ref='herosprite' className='img_hero'></img>
                     </div>
                 
                     <div className='enemy'>
                     <p>{this.state.monsterType}</p>
                     <p>{this.state.monsterHealth}</p>
-                        <img src={this.state.sprite} ref='enemysprite' className='img_enemy'></img>
+                        <img src={this.state.sprite} ref='enemysprite' className={this.state.enemyImage}></img>
                     </div>
                     
                     </div>
                     <p>Kill count: {this.state.killCount}</p>
-                <Link to='/'><Button variant="contained">Exit</Button></Link>
+                <Link to='/'><Button variant="contained" onClick={()=>this.logout()}>Exit</Button></Link>
                 {this.state.endToggle ? <Redirect to='/end'/> : null}
                 </div>
             </div>
@@ -157,4 +164,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {getHero, login, getDungeon})(Dungeon);
+export default connect(mapStateToProps, {getHero, login, getDungeon, changeUser})(Dungeon);

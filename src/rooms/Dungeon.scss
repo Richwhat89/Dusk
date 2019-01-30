@@ -53,6 +53,12 @@ $img-width: 130px;
     transform: translateX($property);
 }
 
+@mixin transformAttack($property){
+    -webkit-transform: $property;
+    -ms-transform: $property; 
+    transform: translateX($property);
+}
+
 @keyframes onClick{
     0%{
         @include transform(40vw)
@@ -81,7 +87,12 @@ $img-width: 130px;
 }
 
 @keyframes attack{
-    
+    0%{
+        @include transformAttack(0vw)
+    }
+    100%{
+        @include transformAttack(40vw)
+    }
 }
 
 

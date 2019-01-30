@@ -1,3 +1,5 @@
+
+
 .end{
     background-image: url("https://s3.us-east-2.amazonaws.com/personalproject89/end.webp");
     background-color: black;
@@ -6,10 +8,11 @@
     background-size: cover;
     height: 100vh;
     color: white;
+    overflow: hidden;
 }
 
 .graph{
-    width: 30vw;
+    width: 80vw;
     height: 50vh;
     margin-left: auto;
     margin-right: auto;
@@ -18,3 +21,10 @@
     flex-direction: column;
     align-items: center;
 }
+
+@media only screen and (min-width: 1400px) {
+    .graph {
+      width: 30vw;
+      height: 50vh;
+    }
+  }

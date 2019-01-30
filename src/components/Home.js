@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import 'typeface-roboto';
 
-import './Home.css'
+import './Home.scss'
 
 class Login extends Component{
     constructor(props){

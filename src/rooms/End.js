@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {Bar, HorizontalBar} from 'react-chartjs-2';
 import {getHero, login, getDungeon, getData, changeUser} from '../ducks/reducer';
 
-import './End.css'
+import './End.scss'
 
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';

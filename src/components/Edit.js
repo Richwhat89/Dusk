@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
 import {edit} from '../ducks/reducer';
 
-import './Edit.css'
+import './Edit.scss'
 
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';

@@ -1,4 +1,4 @@
-.background {
+/* .background {
   background-image: url("https://s3.us-east-2.amazonaws.com/personalproject89/dungeon+background.jpg");
   background-color: black;
   background-position: center;
@@ -15,9 +15,9 @@
   margin-bottom: 25vh;
   justify-content: center;
   color: #d3d3d3;
-  font-weight: bolder;
+  font-weight: bolder; */
   /* border: 1px solid white; */
-}
+/* }
 
 .question {
   font-size: 3vh;
@@ -63,15 +63,15 @@
 }
 .enemy {
   height: 200px;
-  width: 150px;
+  width: 150px; */
   /* border: 1px solid white; */
-}
+/* }
 
 .img_hero {
   height: 130px;
-  width: 130px;
+  width: 130px; */
   /* border: 1px solid white; */
-  animation: heroClick 1s ease-in;
+  /* animation: heroClick 1s ease-in;
 }
 
 .img_enemy {
@@ -93,10 +93,10 @@
   flex-direction: row;
   width: 100vw;
   height: 40vh;
-  justify-content: space-evenly;
+  justify-content: space-evenly; */
   /* background-color: black;
   background-image: linear-gradient(purple, black);
   background-size: contain; */
-}
+/* } */
 
 /*# sourceMappingURL=Dungeon.css.map */

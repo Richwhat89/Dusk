@@ -53,9 +53,16 @@ class Edit extends Component{
                 <input onChange={this.handleChange} placeholder={this.props.display_name} value={this.props.display_name} name='display_name'/><br></br>
                 <p>Email: </p>
                 <input onChange={this.handleChange} placeholder={this.props.email} value={this.props.email} name='email'/> <br></br>
-                {<Button onClick={()=>this.props.edit()}>Update</Button> ? <Link to='/dashboard'><Button variant="contained">Dashboard</Button></Link>:<Button variant="contained" onClick={()=>this.props.edit()}>Update</Button>}<br></br>
-                <Link to='/register'><Button variant="contained" onClick={()=>this.deleteUser(this.props.user.id)}>*DELETE USER*</Button></Link>
+                <div className='edit_buttons'>
+                <div>
+                    <Button variant="contained" onClick={()=>this.props.edit()}>Update</Button><br></br>
+                </div><br></br>
+                <Link to='/dashboard'><Button variant="contained">Dashboard</Button></Link><br></br>
+                <div>
+                <Link to='/register'><Button variant="contained" className='delete' onClick={()=>this.deleteUser(this.props.user.id)}>*DELETE USER*</Button></Link>
+                </div><br></br>
                 <Link to='/dashboard'><Button variant="contained">Cancel</Button></Link>
+                </div>
             </form>
         </div>
         </>

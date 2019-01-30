@@ -13,6 +13,7 @@
     align-items: center;
     flex-direction: column;
     height: 75vh;
-    margin-bottom: 40vh;
     font-family: 'Permanent Marker', cursive;
+    font-size: 3vh;
+    /* border: 1px solid white; */
 }

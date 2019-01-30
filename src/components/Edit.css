@@ -13,5 +13,26 @@
 
 form{
     height: 75vh;
-    width: 50vw;
+    width: 30vw;
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit_buttons{
+    width: 30vw;
+    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+}
+
+button {
+    width: 15vw;
+
+}
+
+.delete {
+    width: 30vw;
 }

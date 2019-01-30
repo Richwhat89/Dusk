@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import {getHero, getDungeon, login, changeUser} from '../ducks/reducer';
 
-import './Dungeon.css';
+import './Dungeon.scss';
 
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';

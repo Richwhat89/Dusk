@@ -9,14 +9,16 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    overflow: hidden;
     /* border: 1px solid white; */
 }
 
 .input{
     /* height: 800vh; */
-    margin-bottom: 5vh;
+    /* margin-bottom: 5vh; */
     /* border: 1px solid white; */
-    margin-bottom: 30vh;
+    /* margin-bottom: 30vh; */
+    padding-bottom: 30vh;
 }
 
 .title{

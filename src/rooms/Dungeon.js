@@ -147,6 +147,8 @@ class Dungeon extends Component{
                     
                     </div>
                     <p>Kill count: {this.state.killCount}</p>
+                </div>
+                <div>
                 <Link to='/'><Button variant="contained" onClick={()=>this.logout()}>Exit</Button></Link>
                 {this.state.endToggle ? <Redirect to='/end'/> : null}
                 </div>

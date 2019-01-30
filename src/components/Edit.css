@@ -28,11 +28,12 @@ form{
     flex-direction: column;
 }
 
-button {
+/* button {
     width: 15vw;
 
-}
+} */
 
 .delete {
     width: 30vw;
+    background-color: black;
 }

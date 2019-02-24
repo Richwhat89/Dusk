@@ -38,7 +38,7 @@ class Login extends Component{
             <>
             <CssBaseline/>
             <div className='home'>
-                <h1 className='title'>SIN</h1>
+                <h1 className='title'>Dusk</h1>
                     <div className='input'>
                         <div onSubmit={this.handleSubmit}>
                             <input onChange={this.handleChange} value={this.state.username} name='username'/><br></br>

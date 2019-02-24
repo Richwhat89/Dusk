@@ -23,7 +23,7 @@ massive(process.env.CONNECTION_STRING)
 
 app.post('/auth/login', controller.login);
 app.post('/auth/register', controller.register);
-app.post('/auth/edit', controller.edit);
+app.put('/auth/edit', controller.edit);
 app.get('/auth/users', controller.user);
 app.get('/auth/user', controller.logout);
 app.delete('/auth/delete/:id', controller.delete);

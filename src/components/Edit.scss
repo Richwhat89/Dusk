@@ -18,13 +18,13 @@
 form{
     height: 75vh;
     width: 30vw;
-    border: 1px solid white;
+    // border: 1px solid white;
     @extend %flex;
 }
 
 .edit_buttons{
     width: 30vw;
-    border: 1px solid white;
+    // border: 1px solid white;
     display: flex;
     flex-direction: column;
 }

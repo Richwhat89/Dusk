@@ -1,8 +1,8 @@
 $primary-color: #d3d3d3;
-$img-height: 130px;
-$img-width: 130px;
-$img-height-full: 230px;
-$img-width-full: 230px;
+$img-height: 100px;
+$img-width: 100px;
+$img-height-full: 200px;
+$img-width-full: 200px;
 
 %flex{
     display: flex;
@@ -132,28 +132,28 @@ $img-width-full: 230px;
 
 @media only screen and (min-width: 1400px) {
     h4 {
-      font-size: 30px;
+      font-size: 1em;
     }
   }
 
-@media only screen and (min-width: 1300px) {
-    .img_hero {
-      height: $img-height-full;
-      width: $img-width-full;
-    }
-}
+// @media only screen and (min-width: 1300px) {
+//     .img_hero {
+//       height: $img-height-full;
+//       width: $img-width-full;
+//     }
+// }
 
-@media only screen and (min-width: 1300px) {
-    .img_enemy {
-      height: $img-height-full;
-      width: $img-width-full;
-    }
-}
+// @media only screen and (min-width: 1300px) {
+//     .img_enemy {
+//       height: $img-height-full;
+//       width: $img-width-full;
+//     }
+// }
 
-@media only screen and (min-width: 1300px) {
-    .img_enemy2 {
-      height: $img-height-full;
-      width: $img-width-full;
-    }
-}
+// @media only screen and (min-width: 1300px) {
+//     .img_enemy2 {
+//       height: $img-height-full;
+//       width: $img-width-full;
+//     }
+// }
     

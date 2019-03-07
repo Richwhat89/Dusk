@@ -35,20 +35,16 @@ class Dashboard extends Component{
     }
 
     render(){
-        // console.log(this.state.users)
-        console.log(this.props)
-
         return(
             <>
             <CssBaseline/>
             <div className="dashboard">{this.state.users.map(user=>{
             return(
             <div className='body'><h1>Welcome</h1>
-                    <h1>{this.props.user.display_name}</h1><br></br><br></br>
-                    <Link to='/class'><Button variant="contained">New Trial</Button></Link><br></br>
-                    {/* <Link to='/dungeon'><Button variant="contained" onClick={()=>getDungeon()}>Resume Trial</Button></Link> */}
-                    <Link to='/edit'><Button variant="contained">Edit</Button></Link><br></br>
-                    <Link to='/'><Button variant="contained" onClick={()=>this.logout()}>Exit</Button></Link>
+                <h1>{this.props.user.display_name}</h1><br></br><br></br>
+                <Link to='/class'><Button variant="contained">New Trial</Button></Link><br></br>
+                <Link to='/edit'><Button variant="contained">Edit</Button></Link><br></br>
+                <Link to='/'><Button variant="contained" onClick={()=>this.logout()}>Exit</Button></Link>
             </div>
             )})}
             </div>

@@ -27,7 +27,6 @@ class Class extends Component{
     })
     
     render(){
-        // const{hero}=this.state;
         return(
             <div className="background">{this.state.heros.map(hero=>{
                 return (
@@ -37,19 +36,19 @@ class Class extends Component{
                 <Link to='/Dungeon'>
                 <Button className="card" variant="contained" onClick={()=>this.props.getHero(hero)}>
                 <div className='format'>
-                <img src={hero.sprite} ref="sprite" className='img'></img><br></br>
-                <div>{hero.class}</div><br></br>
-                <div>{hero.health}</div><br></br>
-                <div>{hero.weapon}</div><br></br>
+                    <img src={hero.sprite} ref="sprite" className='img'></img><br></br>
+                    <div>{hero.class}</div><br></br>
+                    <div>{hero.health}</div><br></br>
+                    <div>{hero.weapon}</div><br></br>
                 </div>
                 </Button></Link>
                 </div>
                 </>
                 )
-            })}</div>
+            })}
+            </div>
         )
     }
-
 }
 
 const mapStateToProps = (state) => {

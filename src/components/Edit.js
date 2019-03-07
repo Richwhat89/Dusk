@@ -1,7 +1,7 @@
 import React,{Component} from 'react';
 import axios from 'axios';
 import {connect} from 'react-redux';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {edit} from '../ducks/reducer';
 
 import './Edit.scss'
@@ -39,7 +39,6 @@ class Edit extends Component{
     .delete(`/auth/delete/${id}`)
 
     render(){
-        console.log(this.props.user.id)
         return(
             <>
             <CssBaseline/>

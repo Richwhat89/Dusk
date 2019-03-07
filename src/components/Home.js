@@ -30,10 +30,6 @@ class Login extends Component{
     }
 
     render(){
-        console.log(this.props)
-        // if(this.props.user.username){
-        //     return <Redirect push to='/dashboard'/>;
-        // }
         return(
             <>
             <CssBaseline/>

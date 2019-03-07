@@ -25,12 +25,10 @@ class Register extends Component{
     }
 
     render(){
-        console.log(this.props)
         return (
             <>
             <CssBaseline/>
         <div className='register'>
-            {/* <img src={logo} style={{maxWidth: "100px"}}/> */}
             <div>
                 <p>Username: </p>
                 <input onChange={this.handleChange} value ={this.state.username} name='username'/><br></br>

@@ -9,7 +9,6 @@ module.exports={
                 res.status(401).json({error: 'Please register to play.'})
             }else{
                 if(await bcrypt.compare(req.body.password, users[0].password)){
-                    console.log(users)
                     req.session.user = {
                         id: users[0].id, 
                         username: users[0].username, 
@@ -17,7 +16,6 @@ module.exports={
                         display_name: users[0].display_name, 
                         email: users[0].email
                     }
-                    console.log('Login finished')
                     res.json({id: users[0].id, username: users[0].username, password: users[0].password, display_name: users[0].display_name, email: users[0].email});
                 }else{
                     res.status(401).json({error: 'Incorrect password. Please try again or register to play.'});
@@ -31,7 +29,6 @@ module.exports={
         const hash = await bcrypt.hash(req.body.password, 10)
         try{
             const response = await db.addUser([req.body.username, hash, req.body.display_name, req.body.email]);
-            console.log(response)
             req.session.user = {
                 id: response[0].id, 
                 username: response[0].username, 
@@ -39,7 +36,6 @@ module.exports={
                 display_name: response[0].display_name, 
                 email: response[0].email
             }
-            console.log(req.session)
             res.json(response[0])
         }catch(e){
             console.log(e);
@@ -62,15 +58,12 @@ module.exports={
             }
             res.json(response[0])
         }catch(e){
-            console.log(e);
             res.status(401).json('Error, please try again')
         }
     },
 
     user: (req, res)=>{
-        console.log('user finished')
         const db = req.app.get('db');
-        console.log(req.session.user.id)
         db.getUser(req.session.user.id)
         .then(user=>{
             res.status(200).json({id: user[0].id, username: user[0].username, display_name: user[0].display_name, email: user[0].email})
@@ -126,7 +119,6 @@ module.exports={
     },
 
     monster: (req,res)=>{
-        console.log(req.body)
         const db = req.app.get('db');
         db.monster({type: req.body.type, health: req.body.health, sprite: req.body.sprite})
         .then(monster=>{
@@ -136,7 +128,6 @@ module.exports={
     },
 
     totalPoints: (req, res)=>{
-        console.log(req.body)
         const db = req.app.get('db');
         db.totalPoints([req.body.killCount, req.body.id])
         .then(()=>{res.sendStatus(200)})
@@ -146,13 +137,11 @@ module.exports={
         const db = req.app.get('db');
         db.highscore(req.params.id)
         .then(data=>{
-            console.log(data)
             res.status(200).json(data)
         })
     },
 
     delete: (req, res)=>{
-        console.log(req.params.id)
         const db = req.app.get('db');
         db.deleteUser(+req.params.id)
         .then(()=>{res.sendStatus(200)})

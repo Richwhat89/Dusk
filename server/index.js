@@ -36,7 +36,7 @@ app.get('/api/rndRoom', controller.rndRoom);
 app.get('/api/events', controller.event);
 app.get('/api/good', controller.good);
 app.get('/api/bad', controller.bad);
-app.get('/api/analytics/:id', (req,res,next)=>{console.log('hit'); next()}, controller.data);
+app.get('/api/analytics/:id', controller.data);
 app.post('/api/endings/total_points', controller.totalPoints);
 
 app.listen(process.env.EXPRESS_PORT, ()=>{

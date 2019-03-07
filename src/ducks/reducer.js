@@ -44,7 +44,6 @@ export function edit(username, password, display_name, email){
 }
 
 export function getUser(id){
-    console.log(id)
     return{
         type: getUser,
         payload: axios.get('/auth/users', id)

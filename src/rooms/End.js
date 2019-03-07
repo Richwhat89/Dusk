@@ -35,7 +35,6 @@ class End extends Component{
     }
 
     render(){
-        console.log(this.props)
         let initialData;
         let labels;
         let data;
@@ -53,7 +52,6 @@ class End extends Component{
                     return 0
                 }
             })}
-            console.log(initialData)
             let highscores = [initialData[0]];
 
             for(let i = 0; i < initialData.length; i++){
@@ -61,7 +59,6 @@ class End extends Component{
                     highscores.push(initialData[i]);
                 }
             }
-            console.log(highscores)
             labels=[];
             data=[];
 
@@ -69,9 +66,6 @@ class End extends Component{
                 labels.push(highscores[i].display_name)
                 data.push(highscores[i].total_points)
             }
-
-            console.log(data)
-            console.log(highscores)
 
         return(
             <>
@@ -94,7 +88,6 @@ class End extends Component{
                     data: data
                 }]
             }}/>
-            
             <br></br>
             <Link to='/'><Button variant="contained" onClick={()=>this.logout()}>Exit</Button></Link>
             </div>

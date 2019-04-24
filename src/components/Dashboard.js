@@ -20,7 +20,6 @@ class Dashboard extends Component{
     }
 
     componentDidMount=()=>{
-        console.log('fdshjhjbhasoidufhasjkldfhasojk')
         axios
         .get('/auth/users')
         .then(response=>{console.log(response); this.props.getUser(response); this.props.getData(this.props.user.id)
